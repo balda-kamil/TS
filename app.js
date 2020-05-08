@@ -1,34 +1,20 @@
-// const person: {
-//   name: string,
-//   age: number,
-//   hobbies: string[],
-//   role: [number, string] //tuple!
-// } = {
-//   name: "Kamil",
-//   age: 29,
-//   hobbies: ['gardening', 'cycling'],
-//   role: [2, 'author']
-// }
-var Role;
-(function (Role) {
-    Role[Role["ADMIN"] = 0] = "ADMIN";
-    Role[Role["READ_ONLY"] = 1] = "READ_ONLY";
-    Role[Role["AUTHOR"] = 2] = "AUTHOR";
-})(Role || (Role = {}));
-var person = {
-    name: "Kamil",
-    age: 29,
-    hobbies: ['gardening', 'cycling'],
-    role: Role.ADMIN
-};
-// person.role.push('admin') to zadziała, push jest wyjątkiem ale musimy pushować dobry typ
-// person.role[1] = 444
-console.log(person.name);
-var favouriteActivities;
-favouriteActivities = ['cooking', 1];
-for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
-    var hobby = _a[_i];
-    console.log(hobby.toUpperCase());
-    // console.log(hobby.map()) błąd - bo map nie działa na string'ach
+function combine(input1, input2, resultConversion) {
+    var result;
+    if (typeof input1 === "number" && typeof input2 === "number" || resultConversion === "as-number") {
+        result = +input1 + +input2;
+    }
+    else {
+        result = input1.toString() + input2.toString();
+    }
+    return result;
+    // if(resultConversion === 'as-number'){
+    //   return +result
+    // }
+    // return result.toString();
 }
-person.role === Role.ADMIN && console.log("is admin");
+var combinedAges = combine(30, 26, "as-text");
+console.log(combinedAges);
+var combinedNames = combine("Kamil ", "Magda ", "as-text");
+console.log(combinedNames);
+var combinedStringAges = combine("30 ", "26 ", "as-number");
+console.log(combinedStringAges);
